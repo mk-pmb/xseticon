@@ -5,12 +5,12 @@
  * modify it under the terms of the GNU General Public License
  * as published by the Free Software Foundation; either version 2
  * of the License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
@@ -145,7 +145,7 @@ Window Select_Window_Args(Display* dpy, int screen, int* rargc, char* argv[])
     COPYOPT;
   }
   ARGC = nargc;
-  
+
   return(w);
 }
 
@@ -185,7 +185,7 @@ Window Select_Window_Mouse(Display* dpy, int screen)
         buttons--;
        break;
     }
-  } 
+  }
 
   XUngrabPointer(dpy, CurrentTime);      /* Done with pointer */
 
@@ -243,7 +243,7 @@ void load_icon(gchar* filename, int* ndata, CARD32** data)
       // data is RGBA
       // We'll do some horrible data-munging here
       guint8* cols = (guint8*)&((*data)[i++]);
-      
+
       int pixcolour = gdImageGetPixel(icon, x, y);
 
       cols[0] = gdImageBlue(icon, pixcolour);
@@ -252,13 +252,13 @@ void load_icon(gchar* filename, int* ndata, CARD32** data)
 
       /* Alpha is more difficult */
       int alpha = 127 - gdImageAlpha(icon, pixcolour); // 0 to 127
-      
+
       // Scale it up to 0 to 255; remembering that 2*127 should be max
       if (alpha == 127)
         alpha = 255;
       else
         alpha *= 2;
-      
+
       cols[3] = alpha;
     }
   }
@@ -287,7 +287,7 @@ int main(int argc, char* argv[])
   XSynchronize(display, TRUE);
 
   int screen = DefaultScreen(display);
-  
+
   if (!display)
     abortprog("XOpenDisplay");
 
@@ -322,7 +322,7 @@ int main(int argc, char* argv[])
 
   load_icon(argv[argindex], &nelements, &data);
 
-  int result = XChangeProperty(display, window, property, XA_CARDINAL, 32, PropModeReplace, 
+  int result = XChangeProperty(display, window, property, XA_CARDINAL, 32, PropModeReplace,
       (gchar*)data, nelements);
 
   if(!result)

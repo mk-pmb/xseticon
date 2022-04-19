@@ -6,14 +6,14 @@ Usage
     options:
       -name     : apply icon to the window of the name supplied
       -id   : apply icon to the window id supplied
-    
+
     Sets the window icon to the specified .png image. The image is loaded from
     the file at runtime and sent to the X server; thereafter the file does not
     need to exist, and can be deleted/renamed/modified without the X server or
     window manager noticing.
     If no window selection option is specified, the window can be interactively
     selected using the cursor.
-    
+
     Hints:
       xseticon -id "$WINDOWID" path/to/icon.png
     Will set the icon for an xterm.xseticon from Paul Evans (http://www.leonerd.org.uk/).
